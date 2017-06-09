@@ -15,7 +15,7 @@ api = Api(app)
 
 class EAM_ROOT(Resource):
     def get(self):
-        return {'hello': request.args.get('abc')}
+        return {'hello': 'just for internal usage'}
 
 class EAM_LOGIN(Resource):
     def post(self):
@@ -151,4 +151,4 @@ api.add_resource(EAM_CFDD, '/cfdd')
 api.add_resource(EAM_BIND, '/bind')
 
 if __name__ == "__main__":
-    app.run(debug=True,host='0.0.0.0')
+    app.run(debug=False,host='0.0.0.0')
