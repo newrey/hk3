@@ -6,9 +6,8 @@ target = 'data.pkl'
 data = dict()
 
 if not os.path.exists(source):
-    input("source.csv文件不存在！")
-
-
+    input("错误：source.csv文件不存在！请检查绑定数据文件路径和名称")
+    os._exit()
 
 if os.path.exists(target):
     if not os.path.isdir('backup'):
