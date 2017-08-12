@@ -7,13 +7,13 @@ data = dict()
 
 if not os.path.exists(source):
     input("错误：source.csv文件不存在！请检查绑定数据文件路径和名称")
-    os._exit()
+    os._exit(1)
 
 if os.path.exists(target):
     if not os.path.isdir('backup'):
         os.mkdir('backup')
     back_up_data_file = 'backup/'+time.strftime('%Y%m%d%H%M%S')+'.pkl'
-    print("\n#####################\n旧数据备份中... 路径："+ back_up_data_file+ "\n#####################\n" )
+    print("\n旧数据备份中... 路径："+ back_up_data_file+ "\n" )
     shutil.copy(target, back_up_data_file)
     pkl_file = open(target, 'rb')
     data = dict(pickle.load(pkl_file))
@@ -35,4 +35,8 @@ for row in csv_reader:
         successCount = successCount+1
 pickle.dump(data, pkl_file)
 pkl_file.close()
-print("批量导入完成，成功"+ str(successCount) +"个，重复"+ str(repeatCount) +"个")
+print("批量导入完成，成功"+ str(successCount) +"个\n")
+if repeatCount > 0 :
+    print("本次有"+ str(repeatCount) +"个已在绑定列表中，不再重复导入")
+input("\n")
+os._exit(1)
